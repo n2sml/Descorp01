@@ -86,7 +86,6 @@ public class AdministradorTeste extends Teste {
     @Test
     public void removerAdministrador() {
         String nome = "AdminMaster";
-
         System.out.println("AdministradorTeste - Iniciando removerAdministrador");
         TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
         query.setParameter("nickname", nome);
