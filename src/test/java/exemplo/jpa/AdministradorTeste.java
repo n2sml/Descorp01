@@ -1,6 +1,10 @@
 package exemplo.jpa;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.persistence.CacheRetrieveMode;
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,9 +27,56 @@ public class AdministradorTeste extends Teste {
     @Test
     public void consultarAdministrador() {
         Administrador administrador = em.find(Administrador.class, 4);
-        assertNotNull(administrador);       
+        assertNotNull(administrador);
         assertEquals("mestresonic", administrador.getNickname());
         assertEquals("mastersonic@google.com", administrador.getEmail());
         assertEquals("sonic1234", administrador.getSenha());
     }
+
+    @Test
+    public void atualizarAdministrador() {
+        String nicknameNovo = "DOOM_GUY";
+        String nicknameAntigo = "DooMguy";
+        
+        TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);      
+        query.setParameter("nickname", nicknameAntigo);
+        Administrador administrador = query.getSingleResult();          
+        assertEquals(nicknameAntigo, administrador.getNickname());
+        
+        administrador.setNickname(nicknameNovo);
+        em.flush();
+        assertEquals(0, query.getResultList().size());        
+        query.setParameter("nickname", nicknameNovo);
+        assertEquals(nicknameNovo, administrador.getNickname());
+    }
+
+    
+    @Test
+    public void atualizarAdministradorMerge() {
+        String nicknameAntigo = "LaraCroft";
+        String senhaAntiga = "TombRaider123";        
+        String nicknameNovo = "L@R@_CR0FT";
+        String senhaNova = "TOOOOMBRAIDERRRR";
+        
+        TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);   
+        query.setParameter("nickname", nicknameAntigo);
+        Administrador administrador = query.getSingleResult();          
+        assertEquals(nicknameAntigo, administrador.getNickname());
+        assertEquals(senhaAntiga, administrador.getSenha());
+        
+        administrador.setNickname(nicknameNovo);
+        administrador.setSenha(senhaNova);
+        em.clear();
+        em.merge(administrador);
+        
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        administrador = em.find(Administrador.class, 6, properties);
+        assertEquals(nicknameNovo, administrador.getNickname());      
+        assertEquals(senhaNova, administrador.getSenha());       
+               
+    }
+   
 }

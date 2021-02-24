@@ -9,10 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_CONQUISTA")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Conquista.porNome",
+                    query = "SELECT c FROM Conquista c WHERE c.nome LIKE :nome ORDER BY c.id"
+            )
+        }
+)
 public class Conquista implements Serializable{
 
     @Id
