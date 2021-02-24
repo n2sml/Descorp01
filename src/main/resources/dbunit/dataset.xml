@@ -38,7 +38,7 @@
     <TB_ADMINISTRADOR id_usuario="6"/>
     
     <TB_USUARIO disc_usuario="A" txt_nickname="AdminMaster" txt_email="Admin@master.master" txt_senha="MASTERRRRRR123***" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
-    <TB_ADMINISTRADOR id_usuario="6"/>
+    <TB_ADMINISTRADOR id_usuario="7"/>
     
     <TB_CONQUISTA txt_nome="Black Cat" txt_descricao="Conquiste sete vidas" num_pontos="100" id_jogo="1" id_administrador="1"/>
     <TB_CONQUISTA txt_nome="Green Hill 1" txt_descricao="Termine Green Hill Zone Act 1" num_pontos="50" id_jogo="1" id_administrador="1"/>
