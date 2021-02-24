@@ -6,6 +6,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_CONSOLE")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Console.porNome",
+                    query = "SELECT c FROM Console c WHERE c.nome LIKE :nome ORDER BY c.id"
+            )
+        }
+)
 public class Console implements Serializable{
 
     @Id

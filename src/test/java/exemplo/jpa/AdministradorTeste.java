@@ -41,13 +41,17 @@ public class AdministradorTeste extends Teste {
         TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);      
         query.setParameter("nickname", nicknameAntigo);
+        
         Administrador administrador = query.getSingleResult();          
         assertEquals(nicknameAntigo, administrador.getNickname());
         
         administrador.setNickname(nicknameNovo);
         em.flush();
+        
         assertEquals(0, query.getResultList().size());        
         query.setParameter("nickname", nicknameNovo);
+        administrador = query.getSingleResult(); 
+        assertNotNull(administrador);
         assertEquals(nicknameNovo, administrador.getNickname());
     }
 
@@ -79,4 +83,18 @@ public class AdministradorTeste extends Teste {
                
     }
    
+    @Test
+    public void removerAdministrador() {
+        String nome = "AdminMaster";
+
+        System.out.println("AdministradorTeste - Iniciando removerAdministrador");
+        TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
+        query.setParameter("nickname", nome);
+        Administrador administrador = query.getSingleResult();
+        assertNotNull(administrador);
+        em.remove(administrador);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        System.out.println("AdministradorTeste - Terminando removerAdministrador");
+    }
 }
