@@ -1,6 +1,7 @@
 package exemplo.jpa;
 
 import java.util.Date;
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -37,5 +38,18 @@ public class JogoTeste extends Teste {
         assertEquals("Earthbound", jogo.getNome());
 
         System.out.println("JogoTeste - Terminando consultarJogo");
+    }
+    
+    @Test
+    public void removerJogo() {
+        System.out.println("JogoTeste - Iniciando removerJogo");
+        TypedQuery<Jogo> query = em.createNamedQuery("Jogo.PorNome", Jogo.class);
+        query.setParameter("nome", "Spider Man");
+        Jogo jogo = query.getSingleResult();
+        assertNotNull(jogo);
+        em.remove(jogo);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        System.out.println("JogoTeste - Terminando removerJogo");
     }
 }

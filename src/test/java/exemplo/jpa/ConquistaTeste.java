@@ -76,4 +76,23 @@ public class ConquistaTeste extends Teste {
         assertEquals(novaDescrição, conquista.getDescricao());    
         
     }
+    
+    @Test
+    public void removerConquista() {
+        /*
+    }
+        System.out.println("ConquistaTeste - Iniciando removerConquista");
+        TypedQuery<Conquista> query = em.createNamedQuery("Conquista.DelDependencia", Conquista.class);
+        query.setParameter("id", "1");
+*/
+        
+        TypedQuery<Conquista> query = em.createNamedQuery("Conquista.porNome", Conquista.class);
+        query.setParameter("nome", "Marble Zone 3");
+        Conquista conquista = query.getSingleResult();
+        assertNotNull(conquista);
+        em.remove(conquista);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        System.out.println("ConquistaTeste - Terminando removerConquista");
+    }
 }

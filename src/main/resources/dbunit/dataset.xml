@@ -5,6 +5,7 @@
     <TB_CONSOLE txt_nome="Super Nintendo" txt_fabricante="Nintendo" num_ano="1987"/>
     <TB_CONSOLE txt_nome="Nintendo 64" txt_fabricante="Nintendo" num_ano="1996"/>
     <TB_CONSOLE txt_nome="Neo-geo" txt_fabricante="SNK" num_ano="1988"/>
+    <TB_CONSOLE txt_nome="Atari" txt_fabricante="Atari" num_ano="1970"/>
     
     
     <TB_JOGO id_console="1" txt_nome="Sonic the Hedgehog" dt_lancamento = "1991-10-10"/>
@@ -18,6 +19,7 @@
 
     <TB_JOGO id_console="4" txt_nome="Metal Slug" dt_lancamento = "1995-03-03"/>
     <TB_JOGO id_console="4" txt_nome="Samurai Shodown" dt_lancamento = "1996-02-03"/>
+    <TB_JOGO id_console="4" txt_nome="Spider Man" dt_lancamento = "1996-02-03"/>
 
     <TB_USUARIO disc_usuario="J" txt_nickname="zxasddd" txt_email="zxasddd@gmail.com" txt_senha="megadrive" dt_criacao = "2020-01-01" dt_ultimo_login = "2020-01-01"/>
     <TB_JOGADOR id_usuario="1" num_pontos="1000"/>

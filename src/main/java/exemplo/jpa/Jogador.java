@@ -9,11 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_JOGADOR")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Jogador.porNome",
+                    query = "SELECT a FROM Jogador a WHERE a.nickname LIKE :nickname ORDER BY a.id"
+            )
+        }
+)
 @DiscriminatorValue(value = "J")
 @PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
 public class Jogador extends Usuario implements Serializable {

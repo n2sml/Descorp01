@@ -72,4 +72,17 @@ public class ConsoleTeste extends Teste {
         assertEquals(nomeNovo, console.getNome());    
         
     }
+    
+    @Test
+    public void removerConsole() {
+        System.out.println("ConsoleTeste - Iniciando removerConsole");
+        TypedQuery<Console> query = em.createNamedQuery("Console.porNome", Console.class);
+        query.setParameter("nome", "Atari");
+        Console console = query.getSingleResult();
+        assertNotNull(console);
+        em.remove(console);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        System.out.println("ConsoleTeste - Terminando removerConsole");
+    }
 }

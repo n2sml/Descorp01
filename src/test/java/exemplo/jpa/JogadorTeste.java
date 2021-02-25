@@ -1,6 +1,8 @@
 package exemplo.jpa;
 
 import java.util.Date;
+import javax.persistence.CacheRetrieveMode;
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,4 +33,20 @@ public class JogadorTeste extends Teste {
         assertEquals("megadrive", jogador.getSenha());
         assertEquals(1000, jogador.getPontos());
     }
+    
+       @Test
+    public void removerJogador() {
+        String nome = "supergamerz";
+        System.out.println("JogadorTeste - Iniciando removerJogador");
+        TypedQuery<Jogador> query = em.createNamedQuery("Jogador.porNome", Jogador.class);
+        query.setParameter("nickname", nome);
+        Jogador jogador = query.getSingleResult();
+        assertNotNull(jogador);
+        em.remove(jogador);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        System.out.println("JogadorTeste - Terminando removerJogador");
+    }
+    
+        
 }

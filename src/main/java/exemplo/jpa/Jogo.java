@@ -7,6 +7,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TB_JOGO")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Jogo.PorNome",
+                    query = "SELECT c FROM Jogo c WHERE c.nome LIKE :nome ORDER BY c.id"
+            )
+        }
+)
 public class Jogo implements Serializable {
 
     @Id
