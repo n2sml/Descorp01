@@ -109,7 +109,7 @@ public class JpqlTest extends Teste {
     
     @Test
     public void quantidadedeConsoles() {
-        logger.info("Executando QuantidadedeConsoles()");
+        logger.info("Executando quantidadedeConsoles()");
         TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Console c WHERE c IS NOT NULL", Long.class);
         Long resultado = query.getSingleResult();
             System.out.println(resultado);
@@ -138,11 +138,21 @@ public class JpqlTest extends Teste {
     
     @Test
     public void quantidadedeJogos() {
-        logger.info("Executando QuantidadedeJogos");
+        logger.info("Executando quantidadedeJogos()");
         TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Jogo c WHERE c IS NOT NULL", Long.class);
         Long resultado = query.getSingleResult();
             System.out.println(resultado);
+    }
+    @Test
+    public void consolePorFabricante() {
+        logger.info("Executando consolePorFabricante()");
+        TypedQuery<Console>query = em.createQuery("SELECT c FROM Console c WHERE c.fabricante LIKE :fabricante",Console.class);
+        query.setParameter("fabricante","Nintendo");
+        List<Console> consoles = query.getResultList();
         
-        
+        consoles.forEach(Console -> {
+            assertTrue(Console.getFabricante().startsWith("Nintendo"));
+        });
+        assertEquals(2, consoles.size());
     }
 }
