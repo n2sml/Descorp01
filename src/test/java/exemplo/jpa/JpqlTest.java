@@ -106,7 +106,8 @@ public class JpqlTest extends Teste {
         Object[] obj = query.getSingleResult();
         assertEquals(obj[0] + "->" + obj[1], "Samurai Shodown->10000");
     }
-        @Test
+    
+    @Test
     public void quantidadedeConsoles() {
         logger.info("Executando QuantidadedeConsoles()");
         TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Console c WHERE c IS NOT NULL", Long.class);
@@ -133,5 +134,15 @@ public class JpqlTest extends Teste {
        query.setParameter("nome", "Nintendo 64");
        List<Jogo> jogo = query.getResultList();
        assertEquals(2, jogo.size());
+    }
+    
+    @Test
+    public void quantidadedeJogos() {
+        logger.info("Executando QuantidadedeJogos");
+        TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Jogo c WHERE c IS NOT NULL", Long.class);
+        Long resultado = query.getSingleResult();
+            System.out.println(resultado);
+        
+        
     }
 }
