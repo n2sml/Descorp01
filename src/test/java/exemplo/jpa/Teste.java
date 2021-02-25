@@ -5,6 +5,8 @@
  */
 package exemplo.jpa;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -14,17 +16,17 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-/**
- *
- * @author masc1
- */
+
 public abstract class Teste {
     protected static EntityManagerFactory emf;
+    protected static Logger logger;
     protected EntityManager em;
     protected EntityTransaction et;
     
     @BeforeClass
     public static void setUpClass() {
+        logger = Logger.getGlobal();
+        logger.setLevel(Level.INFO);
         emf = Persistence.createEntityManagerFactory("retro");
         DbUnitUtil.inserirDados();        
     }
@@ -47,5 +49,16 @@ public abstract class Teste {
             et.commit();
         }
         em.close();        
+    }
+    
+    private void beginTransaction() {
+        et = em.getTransaction();
+        et.begin();
+    }
+
+    private void commitTransaction() {
+        if (!et.getRollbackOnly()) {
+            et.commit();
+        }
     }
 }
