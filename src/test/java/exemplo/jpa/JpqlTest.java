@@ -106,5 +106,32 @@ public class JpqlTest extends Teste {
         Object[] obj = query.getSingleResult();
         assertEquals(obj[0] + "->" + obj[1], "Samurai Shodown->10000");
     }
+        @Test
+    public void quantidadedeConsoles() {
+        logger.info("Executando QuantidadedeConsoles()");
+        TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Console c WHERE c IS NOT NULL", Long.class);
+        Long resultado = query.getSingleResult();
+            System.out.println(resultado);
+    }
 
+    @Test
+    public void jogoMaximaMinimoDataLancamento(){
+        logger.info ("Executando jogoMaximaMinimoDataLancamento()");
+        Query query = em.createQuery("SELECT MAX(c.dataLancamento), MIN(c.dataLancamento) FROM Jogo c");
+        Object[] resultado = (Object[]) query.getSingleResult();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String maiorData = dateFormat.format((Date) resultado[0]);
+        String menorData = dateFormat.format((Date) resultado[1]);
+        assertEquals("06-06-2000", maiorData);
+        assertEquals("10-10-1991", menorData);    
+    }
+    
+    @Test
+    public void jogoPorConsole(){
+       logger.info("Executando jogoPorConsole()");
+       TypedQuery<Jogo> query = em.createQuery("SELECT c FROM Jogo c WHERE c.console.nome =:nome", Jogo.class);
+       query.setParameter("nome", "Nintendo 64");
+       List<Jogo> jogo = query.getResultList();
+       assertEquals(2, jogo.size());
+    }
 }
