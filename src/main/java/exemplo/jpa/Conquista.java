@@ -35,9 +35,6 @@ public class Conquista implements Serializable{
     @Column(name = "TXT_DESCRICAO")
     private String descricao;
 
-    @Column(name = "BYTE_ICONE", nullable = true)
-    private byte[] icone;
-
     @Column(name = "NUM_PONTOS")
     private int pontos;
     
@@ -74,14 +71,6 @@ public class Conquista implements Serializable{
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public byte[] getIcone() {
-        return icone;
-    }
-
-    public void setIcone(byte[] icone) {
-        this.icone = icone;
     }
 
     public int getPontos() {
