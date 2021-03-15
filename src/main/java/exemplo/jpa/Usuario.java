@@ -14,6 +14,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -25,12 +30,20 @@ public abstract class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     
+    @NotBlank
+    @Size (min = 3, max = 20)
     @Column(name = "TXT_NICKNAME")
     protected String nickname;
     
+    @NotBlank
+    @Email
     @Column(name = "TXT_EMAIL")
     protected String email;
     
+    @NotBlank
+    @Size(min = 8, max = 12)
+    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{8,12})", 
+            message = "{exemplo.jpa.Usuario.senha}")
     @Column(name = "TXT_SENHA")
     protected String senha;
     
