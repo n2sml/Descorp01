@@ -15,23 +15,51 @@ public class JpqlTest extends Teste {
 
     @Test
     public void quantidadeJogadores() {
-        System.out.println("Executando quantidadeJogadores()");
-        TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM Jogador c WHERE c.id IS NOT NULL", Long.class);
+         logger.info ("Executando quantidadeJogadores()");
+        TypedQuery<Long> query;
+        query = em.createQuery(
+                "SELECT COUNT(c) FROM Jogador c WHERE c.id IS NOT NULL",
+                Long.class);
         Long resultado = query.getSingleResult();
         System.out.println("Resultado do Teste:" + resultado);
+        assertEquals(new Long(3),resultado);
     }
 
     @Test
     public void quantidadeJogadoresADMs() {
-        System.out.println("Executando quantidadeJogadoresADMs()");
-        TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM Administrador c WHERE c.id IS NOT NULL", Long.class);
+        logger.info ("Executando quantidadeJogadoresADMs()");
+        TypedQuery<Long> query;
+        query = em.createQuery(
+                "SELECT COUNT(c) FROM Administrador c WHERE c.id IS NOT NULL", 
+                Long.class);
         Long resultado = query.getSingleResult();
         System.out.println("Resultado do Teste:" + resultado);
+        assertEquals(new Long(4), resultado);  
+    }
+     
+    @Test
+    public void ordenacaoJogadoresADMs() {
+        logger.info ("Executando ordenacaoJogadoresADMs()");
+        TypedQuery<Jogador> query;
+        query = em.createQuery(
+                "SELECT c.nickname FROM Administrador c ORDER BY c.nickname ASC",
+                Jogador.class);
+        List<Jogador> jogadores = query.getResultList();
+        System.out.println("Resultado do Teste:" + jogadores.get(0));
+        System.out.println("Resultado do Teste:" + jogadores.get(1));
+        System.out.println("Resultado do Teste:" + jogadores.get(2));
+        System.out.println("Resultado do Teste:" + jogadores.get(3));
+        assertEquals(4, jogadores.size());
+        assertEquals("AdminMaster", jogadores.get(0));
+        assertEquals("DooMguy", jogadores.get(1));
+        assertEquals("LaraCroft", jogadores.get(2));
+        assertEquals("mestresonic", jogadores.get(3));
+        
     }
 
     @Test
     public void PrimeiroEUltimoCriado() {
-        System.out.println("Executando PrimeiroEUltimoLogin()");
+        logger.info ("Executando PrimeiroEUltimoLogin()");
         Query query = em.createQuery(
                 "SELECT MAX(c.dataCriacao), MIN(c.dataCriacao) FROM Jogador c");
         Object[] resultado = (Object[]) query.getSingleResult();
@@ -40,11 +68,13 @@ public class JpqlTest extends Teste {
         String menorData = dateFormat.format((Date) resultado[1]);
         System.out.println(maiorData);
         System.out.println(menorData);
+        assertEquals("01-01-2020", maiorData);
+        assertEquals("01-08-2019", menorData);
     }
 
     @Test
     public void NomeQtdPontosUltimoJogadorLogado() {
-        System.out.println("Executando NomeQtdPontosUltimoJogadorLogado()");
+        logger.info ("Executando NomeQtdPontosUltimoJogadorLogado()");
         Query query = em.createQuery(
                 "SELECT c.nickname, c.pontos, c.dataUltimoLogin from Jogador c where c.dataUltimoLogin IN (SELECT MAX(c.dataUltimoLogin) FROM Jogador c)");
 
@@ -54,10 +84,12 @@ public class JpqlTest extends Teste {
         int pontos = (int) resultado[1];
         String dataUltimoLogin = dateFormat.format((Date) resultado[2]);
         System.out.println("Resultado:" + "Nick: " + nickname + " Pontos: " + pontos + " UltimoLogin " + dataUltimoLogin);
+        assertEquals("starguardian, 250, 02-02-2021", resultado[0] +", "+ resultado[1]+", "+ dataUltimoLogin);
     }
 
     @Test
     public void ordenacaoConquistaNome() {
+        logger.info ("Executando ordenacaoConquistaNome()");        
         TypedQuery<Object[]> query;
         query = em.createQuery(
                 "SELECT c.nome, c.descricao FROM Conquista c ORDER BY c.nome DESC, c.descricao ASC",
@@ -73,6 +105,7 @@ public class JpqlTest extends Teste {
 
     @Test
     public void conquistaPorJogo() {
+        logger.info ("Executando conquistaPorJogo()");
         TypedQuery<Conquista> query;
         query = em.createQuery(
                 "SELECT c FROM Conquista c WHERE c.jogo.nome = :nome",
@@ -84,6 +117,7 @@ public class JpqlTest extends Teste {
 
     @Test
     public void conquistasMaisDificeis() {
+        logger.info ("Executando conquistasMaisDificeis()");
         TypedQuery<Conquista> query = em.createQuery(
                 "SELECT c FROM Conquista c JOIN c.jogo j WHERE c.pontos > :pontos ORDER BY c.pontos + 0 DESC",
                 Conquista.class);
@@ -100,6 +134,7 @@ public class JpqlTest extends Teste {
 
     @Test
     public void jogoComConquistaComMaisPontos() {
+        logger.info ("Executando jogoComConquistaComMaisPontos()");
         TypedQuery<Object[]> query = em.createQuery(
                 "SELECT j.nome, c.pontos FROM Conquista c JOIN c.jogo j WHERE c.pontos IN (SELECT MAX(c.pontos) FROM Conquista c)",
                 Object[].class);
@@ -108,11 +143,19 @@ public class JpqlTest extends Teste {
     }
     
     @Test
-    public void quantidadedeConsoles() {
-        logger.info("Executando quantidadedeConsoles()");
-        TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Console c WHERE c IS NOT NULL", Long.class);
-        Long resultado = query.getSingleResult();
-            System.out.println(resultado);
+    public void ordenacaoConsoles() {
+        logger.info("Executando ordenacaoConsoles()");
+        TypedQuery<Console> query;
+        query = em.createQuery(
+                "SELECT c FROM Console c ORDER BY c.nome DESC", 
+                Console.class);
+        List<Console> consoles = query.getResultList();
+        assertEquals(5, consoles.size());
+        assertEquals("Super Nintendo", consoles.get(0).getNome());
+        assertEquals("Nintendo 64", consoles.get(1).getNome());
+        assertEquals("Neo-geo", consoles.get(2).getNome());
+        assertEquals("Mega Drive", consoles.get(3).getNome());
+        assertEquals("Atari", consoles.get(4).getNome());
     }
 
     @Test
@@ -141,7 +184,8 @@ public class JpqlTest extends Teste {
         logger.info("Executando quantidadedeJogos()");
         TypedQuery<Long>query = em.createQuery("SELECT COUNT(c) FROM Jogo c WHERE c IS NOT NULL", Long.class);
         Long resultado = query.getSingleResult();
-            System.out.println(resultado);
+        assertEquals(new Long(9), resultado);
+    
     }
     @Test
     public void consolePorFabricante() {

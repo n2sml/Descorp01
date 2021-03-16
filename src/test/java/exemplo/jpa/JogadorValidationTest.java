@@ -12,9 +12,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class JogadorValidationTest extends Teste {
-  /***
+   /*  
     @Test (expected = ConstraintViolationException.class)
-    public void persistirJogadorInvalido(){
+ public void persistirJogadorInvalido(){
     Jogador jogador = null;
    
         try {
@@ -37,14 +37,10 @@ public class JogadorValidationTest extends Teste {
                 );
             });
             assertEquals(3,contraintViolations.size());
-            int x;
-            x = contraintViolations.size();
-
-            System.out.println("teste contraintViolations.size() " + x);
-            assertNull(jogador.getId());
+            assertNull(jogador.getId()); 
             throw ex;
         }
 
     }
-**/
+*/
 }
