@@ -13,20 +13,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
-public class JogadorValidationTest extends Teste {   
+public class AdministradorValidationTest extends Teste {   
     
     @Test(expected = ConstraintViolationException.class)
-    public void persistirJogadorInvalido(){
-        Jogador jogador = null;
+    public void persistirAdministradorInvalido(){
+        Administrador administrador = null;
         try {
-            jogador = new Jogador();
-            jogador.setNickname("Alfonso");//Nome inválido (precisa de no minimo 5 caracteres e letras minúsculas)
-            jogador.setEmail("email_invalido@");//email inválido
-            jogador.setSenha("testesenhainvalida");//senha inválida
-            jogador.setDataUltimoLogin(new Date());
-            jogador.setDataCriacao(new Date());
+            administrador = new Administrador();
+            administrador.setNickname("Eduard0");//Nome inválido (precisa de no minimo 5 caracteres e letras minúsculas)
+            administrador.setEmail("email_invalido@");//email inválido
+            administrador.setSenha("testesenhainvalida");//senha inválida
+            administrador.setDataUltimoLogin(new Date());
+            administrador.setDataCriacao(new Date());
            
-            em.persist(jogador);
+            em.persist(administrador);
             em.flush();  
         } catch (ConstraintViolationException ex) {
             Set<ConstraintViolation<?>> contraintViolations = ex.getConstraintViolations();
@@ -34,15 +34,15 @@ public class JogadorValidationTest extends Teste {
             contraintViolations.forEach(violation -> {
                 assertThat(violation.getRootBeanClass() + "." + violation.getPropertyPath() + ": " + violation.getMessage(),
                         CoreMatchers.anyOf(
-                                startsWith("class exemplo.jpa.Jogador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres"),
-                                startsWith("class exemplo.jpa.Jogador.email: deve ser um endereço de e-mail bem formado"),
-                                startsWith("class exemplo.jpa.Jogador.senha: A senha deve possuir pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
+                                startsWith("class exemplo.jpa.Administrador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres"),
+                                startsWith("class exemplo.jpa.Administrador.email: deve ser um endereço de e-mail bem formado"),
+                                startsWith("class exemplo.jpa.Administrador.senha: A senha deve possuir pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
                                 
                         )    
                 );
             });
             assertEquals(3,contraintViolations.size());
-//            assertNull(jogador.getId()); 
+//            assertNull(administrador.getId()); 
             throw ex;
         }
 

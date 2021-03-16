@@ -11,9 +11,9 @@ public class JogadorTeste extends Teste {
     @Test
     public void persistirJogador() {
         Jogador jogador = new Jogador();
-        jogador.setNickname("niicolas123");
+        jogador.setNickname("niicolas");
         jogador.setEmail("nicolas@teste.com");
-        jogador.setSenha("doom666");
+        jogador.setSenha("doom666!D");
         jogador.setDataCriacao(new Date());
         jogador.setDataUltimoLogin(new Date());
         jogador.setPontos(666);

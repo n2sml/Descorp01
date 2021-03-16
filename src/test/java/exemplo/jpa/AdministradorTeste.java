@@ -13,9 +13,9 @@ public class AdministradorTeste extends Teste {
     @Test
     public void persistirAdministrador() {
         Administrador administrador = new Administrador();
-        administrador.setNickname("adminMortalKombat");
-        administrador.setEmail("admin@mk.com");
-        administrador.setSenha("M0RT4LK0MB4T");
+        administrador.setNickname("adminmortal");
+        administrador.setEmail("adminmortal@gmail.com");
+        administrador.setSenha("M0RT4LK0MB4t$");
         administrador.setDataCriacao(new Date());
         administrador.setDataUltimoLogin(new Date());
         em.persist(administrador);
@@ -35,8 +35,8 @@ public class AdministradorTeste extends Teste {
 
     @Test
     public void atualizarAdministrador() {
-        String nicknameNovo = "DOOM_GUY";
-        String nicknameAntigo = "DooMguy";
+        String nicknameNovo = "domguy";
+        String nicknameAntigo = "doomguy";
         
         TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);      
@@ -58,10 +58,10 @@ public class AdministradorTeste extends Teste {
     
     @Test
     public void atualizarAdministradorMerge() {
-        String nicknameAntigo = "LaraCroft";
-        String senhaAntiga = "TombRaider123";        
-        String nicknameNovo = "L@R@_CR0FT";
-        String senhaNova = "TOOOOMBRAIDERRRR";
+        String nicknameAntigo = "laracroft";
+        String senhaAntiga = "TombRaider123!";        
+        String nicknameNovo = "lalacroft";
+        String senhaNova = "TOmbR41der!";
         
         TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);   
