@@ -4,12 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Set;
+import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.startsWith;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
@@ -45,7 +46,22 @@ public class JogadorValidationTest extends Teste {
 //            assertNull(jogador.getId()); 
             throw ex;
         }
-
     }
+    
+        @Test(expected = ConstraintViolationException.class)
+    public void atualizarJogadorInvalido() {
+        TypedQuery<Jogador> query = em.createQuery("SELECT j FROM Jogador j WHERE j.nickname like :nickname", Jogador.class);
+        query.setParameter("nickname", "zxasddd");
+        Jogador jogador = query.getSingleResult();
+        jogador.setSenha("12345678");
 
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {    
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("A senha deve possuir pelo menos um caractere de: pontuação, maiúscula, minúscula e número.", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }

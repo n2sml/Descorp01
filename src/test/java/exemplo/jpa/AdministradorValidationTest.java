@@ -4,12 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Set;
+import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.hamcrest.CoreMatchers;
 import static org.hamcrest.CoreMatchers.startsWith;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
@@ -45,7 +46,22 @@ public class AdministradorValidationTest extends Teste {
 //            assertNull(administrador.getId()); 
             throw ex;
         }
-
     }
 
+            @Test(expected = ConstraintViolationException.class)
+    public void atualizarAdministradorInvalido() {
+        TypedQuery<Administrador> query = em.createQuery("SELECT a FROM Administrador a WHERE a.nickname like :nickname", Administrador.class);
+        query.setParameter("nickname", "mestresonic");
+        Administrador administrador = query.getSingleResult();
+        administrador.setEmail("mestresonic.com.br");
+
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {    
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("deve ser um endereço de e-mail bem formado", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }

@@ -3,6 +3,11 @@ package exemplo.jpa;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TB_CONSOLE")
@@ -19,13 +24,20 @@ public class Console implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
+    @NotBlank
+    @Size(max = 15)
     @Column(name = "TXT_NOME", length = 15, nullable = false)
     private String nome;
 
+    @NotNull
+    @Min(1970)
+    @Max(2100)
     @Column(name = "NUM_ANO", nullable = false)
-    private int ano;
-
+    private Integer ano;
+    
+    @NotBlank
+    @Size(max = 15)
     @Column(name = "TXT_FABRICANTE", length = 15, nullable = false)
     private String fabricante;
 

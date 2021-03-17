@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TB_JOGO")
@@ -26,6 +28,7 @@ public class Jogo implements Serializable {
       Embora existam exemplos de jogos que sairam pra mais de um console,
       as conquistas não necessariamente são as mesmas.
      */
+    @NotNull    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CONSOLE", referencedColumnName = "ID")
     private Console console;
@@ -34,9 +37,11 @@ public class Jogo implements Serializable {
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Conquista> conquistas;
 
+//    @NotBlank
     @Column(name = "TXT_NOME", nullable = false)
     protected String nome;
     
+//    @NotBlank
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_LANCAMENTO", nullable = true)
     protected Date dataLancamento;
