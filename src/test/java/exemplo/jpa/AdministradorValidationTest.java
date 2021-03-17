@@ -37,7 +37,7 @@ public class AdministradorValidationTest extends Teste {
                         CoreMatchers.anyOf(
                                 startsWith("class exemplo.jpa.Administrador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres"),
                                 startsWith("class exemplo.jpa.Administrador.email: deve ser um endereço de e-mail bem formado"),
-                                startsWith("class exemplo.jpa.Administrador.senha: A senha deve possuir pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
+                                startsWith("class exemplo.jpa.Administrador.senha: A senha deve possuir entre 8 e 12 caracteres e pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
                                 
                         )    
                 );
