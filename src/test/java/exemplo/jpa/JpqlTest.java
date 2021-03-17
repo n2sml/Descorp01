@@ -1,5 +1,6 @@
 package exemplo.jpa;
 
+import static exemplo.jpa.Teste.logger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,8 +52,8 @@ public class JpqlTest extends Teste {
         System.out.println("Resultado do Teste:" + jogadores.get(3));
         assertEquals(4, jogadores.size());
         assertEquals("AdminMaster", jogadores.get(0));
-        assertEquals("DooMguy", jogadores.get(1));
-        assertEquals("LaraCroft", jogadores.get(2));
+        assertEquals("doomguy", jogadores.get(1));
+        assertEquals("laracroft", jogadores.get(2));
         assertEquals("mestresonic", jogadores.get(3));
         
     }

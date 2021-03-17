@@ -11,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -31,18 +33,19 @@ public abstract class Usuario implements Serializable {
     protected Integer id;
     
     @NotBlank
-    @Size (min = 3, max = 20)
+    @Size (min = 5, max = 20)
+    @Pattern(regexp = "\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
     @Column(name = "TXT_NICKNAME")
     protected String nickname;
     
-    @NotBlank
+    @NotNull
     @Email
-    @Column(name = "TXT_EMAIL")
+    @Column(name = "TXT_EMAIL", length = 30, nullable = false)
     protected String email;
     
     @NotBlank
-    @Size(min = 8, max = 12)
-    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{8,12})", 
+    @Size(min = 8, max = 20)
+    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{8,20})", 
             message = "{exemplo.jpa.Usuario.senha}")
     @Column(name = "TXT_SENHA")
     protected String senha;
@@ -52,10 +55,17 @@ public abstract class Usuario implements Serializable {
     protected Date dataCriacao;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "DT_ULTIMO_LOGIN", nullable = true)
+    @Column(name = "DT_ULTIMO_LOGIN", nullable = true)    
     protected Date dataUltimoLogin;
     
-
+//   @PrePersist
+//    public void setDataCriacao() {
+//        this.setDataCriacao(new Date());
+//    }
+//       @PrePersist
+//    public void setDataUltimoLogin() {
+//        this.setDataUltimoLogin(new Date());
+//    }
 
     @Override
     public int hashCode() {

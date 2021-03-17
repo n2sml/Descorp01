@@ -33,10 +33,10 @@
     <TB_USUARIO disc_usuario="A" txt_nickname="mestresonic" txt_email="mastersonic@google.com" txt_senha="sonic1234" dt_criacao = "2015-01-01" dt_ultimo_login = "2021-01-20"/>
     <TB_ADMINISTRADOR id_usuario="4"/>
     
-    <TB_USUARIO disc_usuario="A" txt_nickname="DooMguy" txt_email="doom@guy.doom" txt_senha="IDDQD" dt_criacao = "2014-01-01" dt_ultimo_login = "2021-01-22"/>
+    <TB_USUARIO disc_usuario="A" txt_nickname="doomguy" txt_email="doom@yahoo.com" txt_senha="IDDQD112!d" dt_criacao = "2014-01-01" dt_ultimo_login = "2021-01-22"/>
     <TB_ADMINISTRADOR id_usuario="5"/>
     
-    <TB_USUARIO disc_usuario="A" txt_nickname="LaraCroft" txt_email="tombraider@eidos.com" txt_senha="TombRaider123" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
+    <TB_USUARIO disc_usuario="A" txt_nickname="laracroft" txt_email="tombraider@eidos.com" txt_senha="TombRaider123!" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
     <TB_ADMINISTRADOR id_usuario="6"/>
     
     <TB_USUARIO disc_usuario="A" txt_nickname="AdminMaster" txt_email="Admin@master.master" txt_senha="MASTERRRRRR123***" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
