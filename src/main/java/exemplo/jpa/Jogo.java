@@ -37,7 +37,8 @@ public class Jogo implements Serializable {
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Conquista> conquistas;
 
-//    @NotBlank
+
+    @ValidaNomeJogo
     @Column(name = "TXT_NOME", nullable = false)
     protected String nome;
     
