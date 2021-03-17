@@ -19,7 +19,7 @@ public class ConsoleValidationTest extends Teste {
         try {
             console = new Console();
             console.setNome("Nintendo Wii");
-            console.setAno(2101);//Ano inválido
+            console.setAno("06");//Ano inválido
             console.setFabricante("");//Fabricante inválido
             em.persist(console);
             em.flush();  
@@ -30,7 +30,7 @@ public class ConsoleValidationTest extends Teste {
                 assertThat(violation.getRootBeanClass() + "." + violation.getPropertyPath() + ": " + violation.getMessage(),
                         CoreMatchers.anyOf(
 //                                startsWith("class exemplo.jpa.Console.nome: não deve estar em branco"),
-                                startsWith("class exemplo.jpa.Console.ano: deve ser menor que ou igual à 2100"),
+                                startsWith("class exemplo.jpa.Console.ano: deve ser um ano com 4 dígitos(AAAA)"),
                                 startsWith("class exemplo.jpa.Console.fabricante: não deve estar em branco")                                
                         )    
                 );
@@ -46,13 +46,13 @@ public class ConsoleValidationTest extends Teste {
         TypedQuery<Console> query = em.createQuery("SELECT c FROM Console c  WHERE c.nome  like :nome", Console.class);
         query.setParameter("nome", "Mega Drive");
         Console console = query.getSingleResult();
-        console.setAno(1949);
+        console.setAno("89");
 
         try {
             em.flush();
         } catch (ConstraintViolationException ex) {    
             ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
-            assertEquals("deve ser maior que ou igual à 1970", violation.getMessage());
+            assertEquals("deve ser um ano com 4 dígitos(AAAA).", violation.getMessage());
             assertEquals(1, ex.getConstraintViolations().size());
             throw ex;
         }

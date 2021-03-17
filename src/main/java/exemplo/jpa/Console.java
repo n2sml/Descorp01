@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -31,10 +32,10 @@ public class Console implements Serializable{
     private String nome;
 
     @NotNull
-    @Min(1970)
-    @Max(2100)
+    @Pattern(regexp = "[1-2]{1}[0-999]{3}", 
+            message = "{exemplo.jpa.Console.ano}")
     @Column(name = "NUM_ANO", nullable = false)
-    private Integer ano;
+    private String ano;
     
     @NotBlank
     @Size(max = 15)
@@ -61,11 +62,11 @@ public class Console implements Serializable{
         this.nome = nome;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 

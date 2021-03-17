@@ -14,7 +14,7 @@ public class ConsoleTeste extends Teste {
         Console console = new Console();
         console.setNome("PlayStation 2");
         console.setFabricante("Sony");
-        console.setAno(1999);
+        console.setAno("1999");
         em.persist(console);
         em.flush();
         assertNotNull(console.getId());
