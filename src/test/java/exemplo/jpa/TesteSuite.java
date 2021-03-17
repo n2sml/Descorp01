@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
     exemplo.jpa.JogadorTeste.class,
     exemplo.jpa.JogoTeste.class,
     exemplo.jpa.JogadorValidationTest.class,
+    exemplo.jpa.ConquistaValidationTest.class,
 })
 public class TesteSuite {
     

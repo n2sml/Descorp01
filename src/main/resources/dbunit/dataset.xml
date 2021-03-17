@@ -21,16 +21,16 @@
     <TB_JOGO id_console="4" txt_nome="Samurai Shodown" dt_lancamento = "1996-02-03"/>
     <TB_JOGO id_console="4" txt_nome="Spider Man" dt_lancamento = "1996-02-03"/>
 
-    <TB_USUARIO disc_usuario="J" txt_nickname="zxasddd" txt_email="zxasddd@gmail.com" txt_senha="megadrive" dt_criacao = "2020-01-01" dt_ultimo_login = "2020-01-01"/>
+    <TB_USUARIO disc_usuario="J" txt_nickname="zxasddd" txt_email="zxasddd@gmail.com" txt_senha="MEGA_drive" dt_criacao = "2020-01-01" dt_ultimo_login = "2020-01-01"/>
     <TB_JOGADOR id_usuario="1" num_pontos="1000"/>
  
-    <TB_USUARIO disc_usuario="J" txt_nickname="starguardian" txt_email="starrrrr@gmail.com" txt_senha="nintend0" dt_criacao = "2019-10-10" dt_ultimo_login = "2021-02-02"/>
+    <TB_USUARIO disc_usuario="J" txt_nickname="starguardian" txt_email="starrrrr@gmail.com" txt_senha="Nintend0*" dt_criacao = "2019-10-10" dt_ultimo_login = "2021-02-02"/>
     <TB_JOGADOR id_usuario="2" num_pontos="250"/>
  
     <TB_USUARIO disc_usuario="J" txt_nickname="supergamerz" txt_email="gamer@gamer.org" txt_senha="ViDeOgAmE" dt_criacao = "2019-08-01" dt_ultimo_login = "2021-01-25"/>
     <TB_JOGADOR id_usuario="3" num_pontos="400"/>
  
-    <TB_USUARIO disc_usuario="A" txt_nickname="mestresonic" txt_email="mastersonic@google.com" txt_senha="sonic1234" dt_criacao = "2015-01-01" dt_ultimo_login = "2021-01-20"/>
+    <TB_USUARIO disc_usuario="A" txt_nickname="mestresonic" txt_email="mastersonic@google.com" txt_senha="Sonic_1234" dt_criacao = "2015-01-01" dt_ultimo_login = "2021-01-20"/>
     <TB_ADMINISTRADOR id_usuario="4"/>
     
     <TB_USUARIO disc_usuario="A" txt_nickname="doomguy" txt_email="doom@yahoo.com" txt_senha="IDDQD112!d" dt_criacao = "2014-01-01" dt_ultimo_login = "2021-01-22"/>
@@ -39,7 +39,7 @@
     <TB_USUARIO disc_usuario="A" txt_nickname="laracroft" txt_email="tombraider@eidos.com" txt_senha="TombRaider123!" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
     <TB_ADMINISTRADOR id_usuario="6"/>
     
-    <TB_USUARIO disc_usuario="A" txt_nickname="AdminMaster" txt_email="Admin@master.master" txt_senha="MASTERRRRRR123***" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
+    <TB_USUARIO disc_usuario="A" txt_nickname="adminmaster" txt_email="admin@master.master" txt_senha="MASTERrrrR123***" dt_criacao = "2016-01-01" dt_ultimo_login = "2018-04-17"/>
     <TB_ADMINISTRADOR id_usuario="7"/>
     
     <TB_CONQUISTA txt_nome="Black Cat" txt_descricao="Conquiste sete vidas" num_pontos="100" id_jogo="1" id_administrador="1"/>

@@ -51,7 +51,7 @@ public class JpqlTest extends Teste {
         System.out.println("Resultado do Teste:" + jogadores.get(2));
         System.out.println("Resultado do Teste:" + jogadores.get(3));
         assertEquals(4, jogadores.size());
-        assertEquals("AdminMaster", jogadores.get(0));
+        assertEquals("adminmaster", jogadores.get(0));
         assertEquals("doomguy", jogadores.get(1));
         assertEquals("laracroft", jogadores.get(2));
         assertEquals("mestresonic", jogadores.get(3));

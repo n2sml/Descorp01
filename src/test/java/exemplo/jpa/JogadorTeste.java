@@ -30,7 +30,7 @@ public class JogadorTeste extends Teste {
        
         assertEquals("zxasddd", jogador.getNickname());
         assertEquals("zxasddd@gmail.com", jogador.getEmail());
-        assertEquals("megadrive", jogador.getSenha());
+        assertEquals("MEGA_drive", jogador.getSenha());
         assertEquals(1000, jogador.getPontos());
     }
     

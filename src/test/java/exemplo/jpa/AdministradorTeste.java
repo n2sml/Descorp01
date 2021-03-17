@@ -30,7 +30,7 @@ public class AdministradorTeste extends Teste {
         assertNotNull(administrador);
         assertEquals("mestresonic", administrador.getNickname());
         assertEquals("mastersonic@google.com", administrador.getEmail());
-        assertEquals("sonic1234", administrador.getSenha());
+        assertEquals("Sonic_1234", administrador.getSenha());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class AdministradorTeste extends Teste {
    
     @Test
     public void removerAdministrador() {
-        String nome = "AdminMaster";
+        String nome = "adminmaster";
         System.out.println("AdministradorTeste - Iniciando removerAdministrador");
         TypedQuery<Administrador> query = em.createNamedQuery("Administrador.porNome", Administrador.class);
         query.setParameter("nickname", nome);

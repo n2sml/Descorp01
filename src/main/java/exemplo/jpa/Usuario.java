@@ -38,7 +38,7 @@ public abstract class Usuario implements Serializable {
     @Column(name = "TXT_NICKNAME")
     protected String nickname;
     
-    @NotNull
+    @NotBlank
     @Email
     @Column(name = "TXT_EMAIL", length = 30, nullable = false)
     protected String email;

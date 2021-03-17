@@ -12,6 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TB_CONQUISTA")
@@ -29,12 +35,18 @@ public class Conquista implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
+    @Pattern(regexp = "[a-zA-Z0-9\\s]{3,20}", message = "{exemplo.jpa.Conquista.nome}")
     @Column(name = "TXT_NOME")
     private String nome;
 
+    @NotBlank
+    @Pattern(regexp = ".{5,100}", message = "{exemplo.jpa.Conquista.descricao}")
     @Column(name = "TXT_DESCRICAO")
     private String descricao;
 
+    @Min(0)
+    @Max(10000)
     @Column(name = "NUM_PONTOS")
     private int pontos;
     
