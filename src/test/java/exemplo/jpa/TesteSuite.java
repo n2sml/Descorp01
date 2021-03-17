@@ -13,6 +13,7 @@ import org.junit.runners.Suite;
     exemplo.jpa.JogadorValidationTest.class,
     exemplo.jpa.AdministradorValidationTest.class,
     exemplo.jpa.ConquistaValidationTest.class,
+    exemplo.jpa.ConsoleValidationTest.class,
 })
 public class TesteSuite {
     
