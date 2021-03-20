@@ -35,15 +35,14 @@ public class AdministradorValidationTest extends Teste {
             contraintViolations.forEach(violation -> {
                 assertThat(violation.getRootBeanClass() + "." + violation.getPropertyPath() + ": " + violation.getMessage(),
                         CoreMatchers.anyOf(
-                                startsWith("class exemplo.jpa.Administrador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres"),
+                                startsWith("class exemplo.jpa.Administrador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres e no máximo 20 caracteres"),
                                 startsWith("class exemplo.jpa.Administrador.email: deve ser um endereço de e-mail bem formado"),
-                                startsWith("class exemplo.jpa.Administrador.senha: A senha deve possuir entre 8 e 12 caracteres e pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
+                                startsWith("class exemplo.jpa.Administrador.senha: A senha deve possuir entre 8 e 20 caracteres e pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
                                 
                         )    
                 );
             });
             assertEquals(3,contraintViolations.size());
-//            assertNull(administrador.getId()); 
             throw ex;
         }
     }
