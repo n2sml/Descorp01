@@ -36,7 +36,7 @@ public class JogadorValidationTest extends Teste {
                 assertThat(violation.getRootBeanClass() + "." + violation.getPropertyPath() + ": " + violation.getMessage(),
                         CoreMatchers.anyOf(
                                 startsWith("class exemplo.jpa.Jogador.nickname: Deve possuir letras minúsculas e ao menos 5 caracteres e no máximo 20 caracteres"),
-                                startsWith("class exemplo.jpa.Jogador.email: deve ser um endereço de e-mail bem formado"),
+                                startsWith("class exemplo.jpa.Jogador.email: Deve ser um endereço de e-mail com formato válido"),
                                 startsWith("class exemplo.jpa.Jogador.senha: A senha deve possuir entre 8 e 20 caracteres e pelo menos um caractere de: pontuação, maiúscula, minúscula e número")
                                 
                         )    
